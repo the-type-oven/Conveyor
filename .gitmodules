@@ -1,0 +1,3 @@
+[submodule "Chassis"]
+	path = Chassis
+	url = https://github.com/the-type-oven/Chassis
