@@ -1,2 +1,2 @@
 # Conveyor
-Linear, Ordered, and Affine types for the Oven.
+Ordered, Linear, Affine, and Relevant types for the Oven.
