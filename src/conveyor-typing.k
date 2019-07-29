@@ -8,7 +8,7 @@ module CONVEYOR-TYPING
     imports CONVEYOR-SYNTAX
     imports DOMAINS
 
-    syntax KResult ::= Type | Qualifier
+    syntax KResult ::= Type | BaseQualifier
 
     configuration <T>
                     <k> $PGM:Program </k>
@@ -20,9 +20,27 @@ module CONVEYOR-TYPING
                   | setTVars(Set)
                   | Type
 
-    rule B:Bool => bool
-    rule I:Int => int
+    // TODO: This is kinda ugly
+    rule X   <= un  => true
+    rule ord <= X   => true
+    rule lin <= aff => true
+    rule lin <= rel => true
+    rule rc  <= lin => true
+    rule lin <= ord => false
+    rule aff <= lin => false
+    rule rel <= lin => false
+    rule un  <= rel => false
+    rule un  <= ord => false
+    rule un  <= aff => false
+    rule un  <= lin => false
+    rule un  <= rc  => false
 
-    rule Q1:Qualifier (Q2:Qualifier T:Type) => (Q1 ^ Q2) T
+    rule X ^ Y => X requires X <= Y
+    rule X ^ Y => Y requires Y <= X
+
+    rule B:Bool => bool
+    rule I:Int  => int
+
+    rule Q1:BaseQualifier (Q2:BaseQualifier T:Type) => (Q1 ^ Q2) T
 endmodule
 

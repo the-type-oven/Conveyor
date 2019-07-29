@@ -9,6 +9,7 @@ module CONVEYOR-EXECUTION
 
     configuration <T>
                     <k> $PGM:Program </k>
+                    <heap> .Map </heap>
                   </T>
 endmodule
 
